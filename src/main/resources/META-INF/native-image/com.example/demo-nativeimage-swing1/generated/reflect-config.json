@@ -1,0 +1,197 @@
+[
+{
+  "name":"[Ljava.awt.event.MouseMotionListener;"
+},
+{
+  "name":"dnis1.app.InitClassesTest",
+  "allDeclaredFields":true,
+  "allDeclaredClasses":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllPublicMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"test1","parameterTypes":[] }]
+},
+{
+  "name":"dnis1.lib.DNISFrame",
+  "methods":[{"name":"coalesceEvents","parameterTypes":["java.awt.AWTEvent","java.awt.AWTEvent"] }]
+},
+{
+  "name":"java.awt.SequencedEvent"
+},
+{
+  "name":"java.awt.event.KeyEvent",
+  "fields":[{"name":"VK_A"}, {"name":"VK_BACK_SLASH"}, {"name":"VK_BACK_SPACE"}, {"name":"VK_C"}, {"name":"VK_CONTEXT_MENU"}, {"name":"VK_COPY"}, {"name":"VK_CUT"}, {"name":"VK_DELETE"}, {"name":"VK_DOWN"}, {"name":"VK_END"}, {"name":"VK_ENTER"}, {"name":"VK_F10"}, {"name":"VK_F6"}, {"name":"VK_F8"}, {"name":"VK_H"}, {"name":"VK_HOME"}, {"name":"VK_INSERT"}, {"name":"VK_KP_DOWN"}, {"name":"VK_KP_LEFT"}, {"name":"VK_KP_RIGHT"}, {"name":"VK_KP_UP"}, {"name":"VK_LEFT"}, {"name":"VK_O"}, {"name":"VK_PAGE_DOWN"}, {"name":"VK_PAGE_UP"}, {"name":"VK_PASTE"}, {"name":"VK_RIGHT"}, {"name":"VK_SPACE"}, {"name":"VK_T"}, {"name":"VK_TAB"}, {"name":"VK_UP"}, {"name":"VK_V"}, {"name":"VK_X"}]
+},
+{
+  "name":"java.io.FilePermission"
+},
+{
+  "name":"java.lang.RuntimePermission"
+},
+{
+  "name":"java.lang.String"
+},
+{
+  "name":"java.net.NetPermission"
+},
+{
+  "name":"java.net.SocketPermission"
+},
+{
+  "name":"java.net.URLPermission",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]
+},
+{
+  "name":"java.security.AllPermission"
+},
+{
+  "name":"java.security.SecureRandomParameters"
+},
+{
+  "name":"java.security.SecurityPermission"
+},
+{
+  "name":"java.util.PropertyPermission"
+},
+{
+  "name":"java.util.concurrent.atomic.AtomicBoolean",
+  "fields":[{"name":"value"}]
+},
+{
+  "name":"java.util.concurrent.atomic.AtomicReference",
+  "fields":[{"name":"value"}]
+},
+{
+  "name":"javax.smartcardio.CardPermission"
+},
+{
+  "name":"javax.swing.plaf.basic.BasicPanelUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"javax.swing.plaf.basic.BasicSplitPaneUI",
+  "methods":[{"name":"loadActionMap","parameterTypes":["javax.swing.plaf.basic.LazyActionMap"] }]
+},
+{
+  "name":"javax.swing.plaf.basic.BasicTextAreaUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"javax.swing.plaf.basic.BasicViewportUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"javax.swing.plaf.metal.MetalButtonUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"javax.swing.plaf.metal.MetalCheckBoxUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"javax.swing.plaf.metal.MetalLabelUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"javax.swing.plaf.metal.MetalRootPaneUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"javax.swing.plaf.metal.MetalScrollBarUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"javax.swing.plaf.metal.MetalScrollPaneUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"javax.swing.plaf.metal.MetalSplitPaneUI",
+  "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"junit.framework.Test",
+  "methods":[{"name":"run","parameterTypes":["junit.framework.TestResult"] }]
+},
+{
+  "name":"junit.framework.TestCase",
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"getName","parameterTypes":[] }]
+},
+{
+  "name":"junit.framework.TestListener"
+},
+{
+  "name":"junit.framework.TestResult",
+  "methods":[{"name":"<init>","parameterTypes":[] }, {"name":"addListener","parameterTypes":["junit.framework.TestListener"] }]
+},
+{
+  "name":"junit.framework.TestSuite",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Class"] }]
+},
+{
+  "name":"org.apache.maven.surefire.junit.JUnit3Provider",
+  "methods":[{"name":"<init>","parameterTypes":["org.apache.maven.surefire.api.provider.ProviderParameters"] }]
+},
+{
+  "name":"org.apache.maven.surefire.junitplatform.JUnitPlatformProvider",
+  "methods":[{"name":"<init>","parameterTypes":["org.apache.maven.surefire.api.provider.ProviderParameters"] }]
+},
+{
+  "name":"org.apache.maven.surefire.testng.ConfigurationAwareTestNGReporter",
+  "methods":[{"name":"<init>","parameterTypes":["org.apache.maven.surefire.api.report.TestReportListener"] }]
+},
+{
+  "name":"org.apache.maven.surefire.testng.TestNGProvider",
+  "methods":[{"name":"<init>","parameterTypes":["org.apache.maven.surefire.api.provider.ProviderParameters"] }]
+},
+{
+  "name":"org.apiguardian.api.API",
+  "queryAllPublicMethods":true
+},
+{
+  "name":"org.junit.internal.AssumptionViolatedException"
+},
+{
+  "name":"org.junit.jupiter.api.Test",
+  "queryAllPublicMethods":true
+},
+{
+  "name":"org.junit.platform.commons.annotation.Testable",
+  "queryAllPublicMethods":true
+},
+{
+  "name":"org.junit.platform.launcher.LauncherSession",
+  "methods":[{"name":"getLauncher","parameterTypes":[] }]
+},
+{
+  "name":"org.junit.platform.launcher.core.LauncherFactory",
+  "methods":[{"name":"openSession","parameterTypes":[] }]
+},
+{
+  "name":"org.testng.internal.IResultListener"
+},
+{
+  "name":"sun.awt.Symbol",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.awt.windows.WingDings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.java2d.marlin.DMarlinRenderingEngine",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.DRBG",
+  "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
+},
+{
+  "name":"sun.security.provider.SHA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA2$SHA256",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+}
+]

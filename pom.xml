@@ -1,0 +1,251 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>demo-nativeimage-swing1</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.3.0</version>
+    <name>demo-nativeimage-swing1</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+        <maven.clean.failOnError>false</maven.clean.failOnError>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <mainClass>dnis1.app.WinLauncher</mainClass>
+        <exec.mainClass>${mainClass}</exec.mainClass>
+        <exec.inheritIo>true</exec.inheritIo>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>5.13.0</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.10.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            
+            <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <version>2.16.0</version>
+                <configuration>
+                    <lineEnding>LF</lineEnding>
+                    <directories>
+                        <directory>${project.build.sourceDirectory}</directory>
+                        <directory>${project.build.sourceDirectory}/../java-templates</directory>
+                        <directory>${project.build.directory}/generated-sources</directory>
+                        <directory>${project.build.testSourceDirectory}</directory>
+                    </directories>                
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+    
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${mainClass}</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+            
+        </plugins> 
+    </build>
+
+    <profiles>
+        <profile>
+            <id>native-win</id>
+            <build>
+                <plugins>
+                    
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>0.9.27</version>
+                        <extensions>true</extensions>
+                        <executions>
+
+                            <execution>
+                                <id>merge-metadata</id>
+                                <goals>
+                                    <goal>metadata-copy</goal>
+                                </goals>
+                                <phase>generate-resources</phase>
+                            </execution>
+
+                            <execution>
+                                <id>build-native</id>
+                                <goals>
+                                    <goal>compile-no-fork</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                            
+                            <execution>
+                                <id>test-native</id>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <phase>test</phase>
+                            </execution>
+                            
+                        </executions>
+                        <configuration>
+                            <quickBuild>false</quickBuild>
+                            <fallback>false</fallback>
+                            <verbose>true</verbose>
+                            <buildArgs>
+                                
+                                <arg>-O3</arg>
+                                
+                                <!-- this must be here for AWT/Swing to work -->
+                                <arg>-Djava.awt.headless=false</arg>
+                                
+                                <arg>-H:+AddAllCharsets</arg>
+                                
+                                <!-- needed for CookieManager from JavaFX -->
+                                <arg>--add-opens=javafx.web/com.sun.webkit.network=ALL-UNNAMED</arg>
+                                
+                                <arg>--verbose</arg>
+                                
+                                <!-- make exe ask for Admin rights -->
+                                <arg>-H:NativeLinkerOption=/MANIFEST:EMBED</arg>
+                                <arg>-H:NativeLinkerOption=/MANIFESTUAC:level='requireAdministrator'</arg>
+                                
+                                <!-- don't start console - that's probably what you want with GUI app -->
+                                <arg>-H:NativeLinkerOption=/SUBSYSTEM:WINDOWS</arg>
+                                <arg>-H:NativeLinkerOption=/ENTRY:mainCRTStartup</arg>
+
+                                <!-- include main icon - the one you'll see in Explorer or Start Menu -->
+                                <arg>-H:NativeLinkerOption=${project.basedir}\src\main\resources\windows\mainicon.res</arg>
+
+                                <!-- include version information -->
+                                <arg>-H:NativeLinkerOption=${project.basedir}\src\main\resources\windows\ver.res</arg>
+                                
+                            </buildArgs>
+                            
+                            <metadataRepository>
+                                <enabled>true</enabled>
+                            </metadataRepository>
+                            
+                            <agent>
+                                <enabled>true</enabled>
+                                <defaultMode>Standard</defaultMode>
+                                <metadataCopy>
+                                    <merge>true</merge>
+                                    <outputDirectory>${project.basedir}/src/main/resources/META-INF/native-image/${project.groupId}/${project.artifactId}/generated</outputDirectory>
+                                </metadataCopy>
+                            </agent>
+                        </configuration>
+                    </plugin>
+                    
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>java-agent</id>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>java</executable>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                    <arguments>
+                                        <argument>-classpath</argument>
+                                        <classpath/>
+                                        <argument>${exec.mainClass}</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>native</id>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${project.build.directory}/${imageName}</executable>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+</project>
