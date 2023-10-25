@@ -5,7 +5,7 @@
     <groupId>com.example</groupId>
     <artifactId>demo-nativeimage-swing1</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.3.0</version>
+    <version>0.0.5.0</version>
     <name>demo-nativeimage-swing1</name>
     <url>http://maven.apache.org</url>
 
@@ -55,6 +55,13 @@
             <version>5.10.0</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -64,6 +71,7 @@
             <plugin>
                 <groupId>net.revelc.code.formatter</groupId>
                 <artifactId>formatter-maven-plugin</artifactId>
+                <!-- 2.16.0 is the latest version that still supports Java 8 -->
                 <version>2.16.0</version>
                 <configuration>
                     <lineEnding>LF</lineEnding>
@@ -161,12 +169,20 @@
                             
                         </executions>
                         <configuration>
-                            <quickBuild>false</quickBuild>
-                            <fallback>false</fallback>
-                            <verbose>true</verbose>
                             <buildArgs>
+
+                                <!-- you probably want this on -->
+                                <arg>--verbose</arg>                                
                                 
-                                <arg>-O3</arg>
+                                <!-- allowed options are force-fallback, no-fallback and auto-fallback, you probably want no-fallback -->
+                                <!-- fallback is a type of image that still requires JRE installed -->
+                                <arg>--no-fallback</arg>
+
+                                                                
+                                <!-- optimization level "b", "0" - "3" -->
+                                <!-- b = fastest, 3 = most optimized -->
+                                <!-- you probably want b for debug and 3 for production -->
+                                <arg>-O0</arg>
                                 
                                 <!-- this must be here for AWT/Swing to work -->
                                 <arg>-Djava.awt.headless=false</arg>
@@ -176,7 +192,6 @@
                                 <!-- needed for CookieManager from JavaFX -->
                                 <arg>--add-opens=javafx.web/com.sun.webkit.network=ALL-UNNAMED</arg>
                                 
-                                <arg>--verbose</arg>
                                 
                                 <!-- make exe ask for Admin rights -->
                                 <arg>-H:NativeLinkerOption=/MANIFEST:EMBED</arg>
@@ -188,8 +203,9 @@
 
                                 <!-- include main icon - the one you'll see in Explorer or Start Menu -->
                                 <arg>-H:NativeLinkerOption=${project.basedir}\src\main\resources\windows\mainicon.res</arg>
-
+                                
                                 <!-- include version information -->
+                                <!-- this is what you'll get in Properties / Version in File Explorer -->
                                 <arg>-H:NativeLinkerOption=${project.basedir}\src\main\resources\windows\ver.res</arg>
                                 
                             </buildArgs>

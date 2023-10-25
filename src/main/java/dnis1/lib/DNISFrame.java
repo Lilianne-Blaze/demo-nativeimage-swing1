@@ -18,6 +18,7 @@ public class DNISFrame extends JFrame {
     public DNISFrame() throws IOException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
+        setLocation(100, 100);
 
         // Set the icon for the JFrame
         ImageIcon frameIcon = new ImageIcon(getClass().getResource("/shared/icon.png"));

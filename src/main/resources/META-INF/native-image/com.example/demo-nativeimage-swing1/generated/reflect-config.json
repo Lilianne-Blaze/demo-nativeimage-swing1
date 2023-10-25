@@ -32,6 +32,14 @@
   "name":"java.lang.String"
 },
 {
+  "name":"java.lang.Throwable",
+  "methods":[{"name":"getSuppressed","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.reflect.Member",
+  "methods":[{"name":"isSynthetic","parameterTypes":[] }]
+},
+{
   "name":"java.net.NetPermission"
 },
 {
@@ -107,6 +115,10 @@
 {
   "name":"javax.swing.plaf.metal.MetalSplitPaneUI",
   "methods":[{"name":"createUI","parameterTypes":["javax.swing.JComponent"] }]
+},
+{
+  "name":"jdk.internal.util.SystemProps",
+  "methods":[{"name":"initProperties","parameterTypes":[] }]
 },
 {
   "name":"junit.framework.Test",

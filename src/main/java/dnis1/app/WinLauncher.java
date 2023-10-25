@@ -7,13 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WinLauncher {
 
-    static {
-        try {
-            // new DNISFrame();
-        } catch (Exception e) {
-        }
-    }
-
     public static void main(String[] args) {
         log.info("main...");
         try {
