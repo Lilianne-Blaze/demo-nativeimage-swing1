@@ -10,15 +10,18 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DNISFrame extends JFrame {
 
+    private JTextArea textArea;
+
     public DNISFrame() throws IOException {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
-        setLocation(100, 100);
+        setLocation(150, 150);
 
         // Set the icon for the JFrame
         ImageIcon frameIcon = new ImageIcon(getClass().getResource("/shared/icon.png"));
@@ -29,8 +32,8 @@ public class DNISFrame extends JFrame {
         splitPane.setResizeWeight(0.66); // 2:1 ratio
 
         // Create a text area for the left side
-        JTextArea textArea = new JTextArea();
-        textArea.setText("This is a text area.");
+        textArea = new JTextArea();
+        textArea.setText("This is a text area.\n");
         JScrollPane textAreaScrollPane = new JScrollPane(textArea);
         splitPane.setLeftComponent(textAreaScrollPane);
 
@@ -68,6 +71,15 @@ public class DNISFrame extends JFrame {
                 e.printStackTrace();
             }
         }
+
+    }
+
+    public void addLine(String line) {
+        SwingUtilities.invokeLater(() -> {
+            String t = textArea.getText();
+            t = t + line + "\n";
+            textArea.setText(t);
+        });
 
     }
 }

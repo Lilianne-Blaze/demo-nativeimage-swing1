@@ -16,6 +16,7 @@ public class WinLauncher {
             SwingUtilities.invokeAndWait(() -> {
                 frame.setVisible(true);
             });
+            frame.addLine("Hello world!");
             log.info("frame shown.");
 
         } catch (Exception e) {
