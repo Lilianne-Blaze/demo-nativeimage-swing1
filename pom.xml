@@ -5,7 +5,7 @@
     <groupId>com.example</groupId>
     <artifactId>demo-nativeimage-swing1</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.7.0-SNAPSHOT</version>
+    <version>0.0.9.0</version>
     <name>demo-nativeimage-swing1</name>
     <url>http://maven.apache.org</url>
 
